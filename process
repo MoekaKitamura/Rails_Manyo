@@ -1,0 +1,35 @@
+Ruby 2.6.5
+Ruby on Rails 5.2.5
+
+自分のタスクを登録したい
+タスクに終了期限を設定できるようにしたい
+タスクに優先順位をつけたい =>プルダウン:faculty
+タスクのステータス（未着手・着手・完了）を管理したい
+ステータスでタスクを絞り込みたい =>params[:sort]
+タスク名でタスクを検索したい =>params[:keyword]
+タスクを一覧で表示したい
+一覧画面で優先順位、終了期限を元にしてソートしたい
+タスクにラベルをつけて分類したい
+ユーザ登録し、自分が登録したタスクだけを見られるようにしたい
+
+
+User user_name:string email:string password_digest:string admin:boolean
+users i(admin) n c s e u d 
+Task task_name:string to_do:string deadline:date status:string priority:string references:user
+tasks i n c s e u d
+Lavel label_name:string references:task_name
+lavels n c e u d
+
+sessions
+
+/スクショ提出
+各バージョンを確認するのコマンドをターミナルで実行した結果のスクリーンショット
+ruby -v、rails -v、psql --versionのコマンド
+rails db:create
+
+rails _5.2.5_ new task_app -d postgresql
+cd task_app/
+rails db:create =>screenshot
+ruby -v
+rails -v
+psql --version
