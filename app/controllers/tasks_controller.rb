@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.order(created_at: :desc)
+    @tasks = Task.order(params[:sort])
   end
 
   def show
@@ -42,6 +43,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
   def task_params
-    params.require(:task).permit(:task_name, :to_do, :deadline, :status, :priority)
+    params.require(:task).permit(:task_name, :to_do, :deadline, :status, :priority, :sort)
   end
 end

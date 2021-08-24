@@ -4,7 +4,7 @@ class Task < ApplicationRecord
   # validate :not_before_today
 
   # def not_before_today
-  #   errors.add(:deadline, '本日以降で入力してください') if deadline.nil? || deadline < Date.today
+  #   errors.add(:deadline, 'は本日以降で入力してください') if deadline.nil? || deadline < Date.today
   # end
 
   # validates :status, inclusion: { in:["未着手","着手","完了"]}
