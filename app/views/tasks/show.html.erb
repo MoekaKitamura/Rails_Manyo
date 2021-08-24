@@ -2,30 +2,34 @@
 
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Task name:</strong>
-  <%= @task.task_name %>
-</p>
+<div class="show_area">
+  <p>
+    <strong><%= t('task.task_name') %>:</strong>
+    <%= @task.task_name %>
+  </p>
 
-<p>
-  <strong>To do:</strong>
-  <%= @task.to_do %>
-</p>
+  <p>
+    <strong><%= t('task.to_do') %>:</strong>
+    <%= @task.to_do %>
+  </p>
 
-<p>
-  <strong>Deadline:</strong>
-  <%= @task.deadline %>
-</p>
+  <p>
+    <strong><%= t('task.deadline') %>:</strong>
+    <%= @task.deadline %>
+  </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @task.status %>
-</p>
+  <p>
+    <strong><%= t('task.status') %>:</strong>
+    <%= @task.status %>
+  </p>
 
-<p>
-  <strong>Priority:</strong>
-  <%= @task.priority %>
-</p>
+  <p>
+    <strong><%= t('task.priority') %>:</strong>
+    <%= @task.priority %>
+  </p>
+</div>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<div class="bottom_link">
+  <%= link_to t('action.edit'), edit_task_path(@task) %> |
+  <%= link_to t('action.back'), tasks_path %>
+</div>
