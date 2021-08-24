@@ -204,3 +204,16 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  action:
+    tasks: タスク一覧
+    new: 新規登録
+    edit: 編集
+    show: 詳細
+    destroy: 削除
+    back: 戻る
+  task:
+    task_name: タスク名
+    to_do: すること
+    deadline: 終了期限
+    status: ステータス
+    priority: 優先順位

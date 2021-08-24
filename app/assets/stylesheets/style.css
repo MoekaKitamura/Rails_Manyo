@@ -1,8 +1,10 @@
 body {
-  background-color: #fad09e;
+  background-color: #FBF6F0;
   color: #333;
   margin: 33px;
-  font-family: verdana, arial, helvetica, sans-serif;
+  /* font-family: verdana, arial, helvetica, sans-serif; */
+  font-family: "ヒラギノ丸ゴ ProN W4", sans-serif;
+  /* font-family: "筑紫B丸ゴシック", sans-serif; */
   font-size: 13px;
   line-height: 18px;
   min-height: 100%
@@ -10,21 +12,14 @@ body {
 
 a {
   color: #000;
-
-  &:visited {
-    color: #666;
-  }
 }
 
-div {
-  &.field, &.actions {
+.field, .actions {
     margin-bottom: 20px;
-  }
 }
 
 #notice {
   color: green;
-  text-align: center;
 }
 
 .field_with_errors {
@@ -58,28 +53,36 @@ div {
   }
 }
 
-header h1{
+h1{
   text-align: center;
   margin: 30px;
+  border-bottom: 5px solid #AEE6E6;
+  width: 300px;
 }
 
-able{
-  margin: 0 auto;
-  max-width: 500px;
-  background-color: #fff;
-  margin-bottom: 50px;
+table{
+  max-width: 900px;
 }
 
 table {
   border-collapse: collapse;
-  /* border: solid 2px #bbdbf3; */
 }
+
 th{
-  /* background-color: #bbdbf3; */
-  height: 70px;
+  background-color: #FFDA77;
+  height: 50px;
   text-align: center;
+  padding: 20px;
+  border: solid 2px #FFDA77;
 }
+
 td {
-  padding: 5px 10px;
+  height: 40px;
+  padding: 10px 20px;
+  border: dashed 2px #FFDA77;
+}
+
+form{
+  padding: 20px 50px;
 }
 
