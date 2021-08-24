@@ -41,3 +41,13 @@
     | ------------------------ | 
     | task_id(FK):references   | 
     | lavel_id(FK):references  | 
+
+    * Deployment instructions
+    Web URL:https://task-app-manyo0824.herokuapp.com/
+      $ rails assets:precompile RAILS_ENV=production
+      $ git add .
+      $ git commit -m "  "
+      $ git push origin step2(bruch name)
+      (automatically deployed to haroku)
+      or
+      $ git push heroku step2:master
