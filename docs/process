@@ -13,14 +13,16 @@ Ruby on Rails 5.2.5
 ユーザ登録し、自分が登録したタスクだけを見られるようにしたい
 
 
-User user_name:string email:string password_digest:string admin:boolean
+- User user_name:string email:string password_digest:string admin:boolean
 users i(admin) n c s e u d 
-Task task_name:string to_do:string deadline:date status:string priority:string references:user
+- Task task_name:string to_do:string deadline:date status:string priority:string user:references
 tasks i n c s e u d
-Lavel label_name:string references:task_name
+- Lavel label_name:string
 lavels n c e u d
-
-sessions
+- Set_lavel task:references lavel:references
+コントローラーなし
+- モデルなし
+sessions n c d
 
 /スクショ提出
 各バージョンを確認するのコマンドをターミナルで実行した結果のスクリーンショット
