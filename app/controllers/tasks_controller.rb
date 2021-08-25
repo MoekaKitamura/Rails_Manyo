@@ -11,6 +11,7 @@ class TasksController < ApplicationController
     elsif params[:search_status].present?
       @tasks = Task.status(params[:search_status])
     end
+    @tasks = Task.page(params[:page]).per(5)
   end
 
   def show
