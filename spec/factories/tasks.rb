@@ -15,8 +15,16 @@ FactoryBot.define do
     task_name { "2個目のタスク" }
     to_do { "テスト2" }
     deadline { "2021-10-10" }
-    status { "未着手" }
+    status { "完了" }
     priority { "中" }
   end
+
+  # factory :thierd_task, class: Task do
+  #   task_name { "3個目のタスク" }
+  #   to_do { "テスト3" }
+  #   deadline { "2021-10-30" }
+  #   status { "完了" }
+  #   priority { "低" }
+  # end
 
 end

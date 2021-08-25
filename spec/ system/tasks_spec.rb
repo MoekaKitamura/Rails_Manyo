@@ -41,6 +41,40 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[1]).to have_content '1個目のタスク'
       end
     end
+    context 'タスクが優先順位の降順に並んでいる場合' do
+      it '優先順位が中タスク(2個目)が一番上に表示される' do
+        visit tasks_path(sort: "priority")
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content '2個目のタスク'
+        expect(task_list[1]).to have_content '1個目のタスク'
+      end
+    end
+    context 'タイトルであいまい検索をした場合' do
+      it '検索ワード1でヒットする1個目のタスクのみ表示される' do
+        visit tasks_path
+        fill_in 'search_task_name', with: '1'
+        click_on "検索"
+        expect(page).to have_content '1個目のタスク'
+      end
+    end
+    context 'ステータスで検索をした場合' do
+      it '完了でヒットする2個目のタスクのみ表示される' do
+        visit tasks_path
+        select '完了', from: 'search_status'
+        click_on "検索"
+        expect(page).to have_content '2個目のタスク'
+      end
+    end
+    context 'タイトルとステータスで検索をした場合' do
+      it 'タイトル"タスク"と完了でヒットする2個目のタスクのみ表示される' do
+        visit tasks_path
+        fill_in 'search_task_name', with: 'タスク'
+        select '完了', from: 'search_status'
+        click_on "検索"
+        expect(page).to have_content '2個目のタスク'
+      end
+    end
+    
   end
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
