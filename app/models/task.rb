@@ -9,4 +9,9 @@ class Task < ApplicationRecord
 
   # validates :status, inclusion: { in:["未着手","着手","完了"]}
   # validates :priority, inclusion: { in:["高","中","低"]}
+
+  # スコープを設定する メソッド -> (引数) {実行して欲しいクエリ}
+  scope :task_name, ->(keyword) { where("task_name LIKE ? ","%#{keyword}%")}
+  scope :status, ->(keyword) { where(status: keyword)}
+  
 end
