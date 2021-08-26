@@ -14,6 +14,11 @@ a {
   color: #000;
 }
 
+p.login {
+  text-align: right;
+  margin: 10px 20px;
+}
+
 .field, .actions {
     margin-bottom: 20px;
 }
@@ -57,7 +62,7 @@ a {
 
 h1{
   text-align: center;
-  margin: 30px;
+  margin: 10px 30px 30px 30px;
   border-bottom: 5px solid #AEE6E6;
   width: 300px;
 }
@@ -96,7 +101,7 @@ form{
   padding: 0 50px;
 }
 
-/*ページネーション自体のデザイン*/
+/*---------------------ページネーション自体のデザイン*/
 
 .pagination>li>a {          
   border: none;     /*枠線をなくす*/
@@ -139,3 +144,39 @@ form{
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   }
+
+
+/*------------------------ ヘッダー */
+
+.nav {
+  display: flex;
+  justify-content: flex-end!important;
+}
+
+
+.nav-item:first-child{
+  margin-right: auto;
+  font-size: 1.5rem;
+}
+
+
+/* --------------------------------- */
+.nav-item{
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+.nav-item::after{
+  content:"";
+  width: 0%;    /*最初はwidth:0にする*/
+  height: 8px;
+  background: #ffb580;
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  z-index: -1;
+  transition: all .3s;  /*アニメーションの長さ*/
+}	
+.nav-item:hover::after{
+  width: 100%;    /*hover時に100%で広がる*/
+}

@@ -1,24 +1,25 @@
+<h1>詳細</h1>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User name:</strong>
-  <%= @user.user_name %>
-</p>
+<div class="show_area">
+  <p>
+    <strong>ユーザー名:</strong>
+    <%= @user.user_name %>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <p>
+    <strong>メールアドレス:</strong>
+    <%= @user.email %>
+  </p>
 
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
+  <p>
+    <strong>管理者:</strong>
+    <%= @user.admin %>
+  </p>
+</div>
 
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="bottom_link">
+  <%= link_to t('action.edit'), edit_user_path(@user) %> |
+  <%= link_to t('action.back'), users_path %>
+</div>
