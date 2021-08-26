@@ -3,6 +3,15 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.order(created_at: :desc)
+    @tasks = Task.order(params[:sort])
+    if params[:search_task_name].present? && params[:search_status].present?
+      @tasks = Task.task_name(params[:search_task_name]).status(params[:search_status])
+    elsif params[:search_task_name].present?
+      @tasks = Task.task_name(params[:search_task_name])
+    elsif params[:search_status].present?
+      @tasks = Task.status(params[:search_status])
+    end
+    @tasks = @tasks.page(params[:page]).per(5)
   end
 
   def show
@@ -42,6 +51,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
   def task_params
-    params.require(:task).permit(:task_name, :to_do, :deadline, :status, :priority)
+    params.require(:task).permit(:task_name, :to_do, :deadline, :status, :priority, :sort, :search_name, :search_status)
   end
 end

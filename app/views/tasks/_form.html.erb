@@ -23,17 +23,18 @@
 
   <div class="field">
     <%= form.label :deadline %>
-    <%= form.date_select :deadline %>
+    <%= form.date_select :deadline %> 
   </div>
 
   <div class="field">
     <%= form.label :status %>
-    <%= form.text_field :status %>
+    <%= form.select :status,Task.statuses.keys, {include_blank: '選択してください'}%>
   </div>
 
   <div class="field">
     <%= form.label :priority %>
-    <%= form.text_field :priority %>
+    <%= form.select :priority, Task.priorities.keys, {include_blank: '選択してください'} %>
+
   </div>
 
   <div class="actions">

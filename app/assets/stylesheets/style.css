@@ -62,9 +62,9 @@ h1{
   width: 300px;
 }
 
-table{
+/* table{
   max-width: 900px;
-}
+} */
 
 table {
   border-collapse: collapse;
@@ -95,3 +95,47 @@ form{
 .bottom_link{
   padding: 0 50px;
 }
+
+/*ページネーション自体のデザイン*/
+
+.pagination>li>a {          
+  border: none;     /*枠線をなくす*/
+  color: #333;
+  background-color: #FBF6F0;
+  border-radius: 15px;     /*角を丸くする*/
+}
+.pagination>.disabled>a {          
+  background-color: #FBF6F0;
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #FFA45B;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+  color: rgb(88, 88, 88);
+
+
+}
+.pagination>.active>a:hover {     
+  background: #FFA45B;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+  color: #333;
+
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+  border-radius: 15px;    /*角を丸くする*/
+  background: #FFA45B;     /*背景の色を変える*/
+  opacity: 0.3;
+  color: #333;
+}
+
+.pagination>li:last-child>a, .pagination>li:last-child>span {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  }
+.pagination>li:first-child>a, .pagination>li:first-child>span {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  }

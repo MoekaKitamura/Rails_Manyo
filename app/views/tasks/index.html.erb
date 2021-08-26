@@ -7,9 +7,9 @@
     <tr>
       <th><%= t('task.task_name') %></th>
       <th><%= t('task.to_do') %></th>
-      <th><%= t('task.deadline') %></th>
-      <th><%= t('task.status') %></th>
-      <th><%= t('task.priority') %></th>
+      <th><%= t('task.deadline') %><%= link_to "▼", tasks_path(sort: "deadline") %></th>
+      <th><%= t('task.status') %><%= link_to "▼", tasks_path(sort: "status") %></th>
+      <th><%= t('task.priority') %><%= link_to "▼", tasks_path(sort: "priority") %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -32,4 +32,19 @@
 
 <br>
 
-<%= link_to t('action.new'), new_task_path %>
+<%= link_to t('action.new'), new_task_path %> |
+<%= link_to "終了期限で並び替え", tasks_path(sort: "deadline") %> |
+<%= link_to "優先順位で並び替え", tasks_path(sort: "priority") %> |
+<%= link_to "並び替えリセット", tasks_path %>
+
+<div class="search-form">
+  <%= form_with( url: tasks_path, method: :get, local: true) do |f| %>
+    <p>タスク名で検索する</p>
+    <%= f.text_field :search_task_name, id: "search_task_name", value: params[:search_task_name] %>
+    <%= f.select :search_status, Task.statuses.keys, {include_blank: '選択してください'} %>
+    <%= f.submit "検索" %>
+  <% end %>
+</div>
+
+<%= paginate @tasks %>
+
