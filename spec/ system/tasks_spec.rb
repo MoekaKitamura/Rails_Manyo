@@ -10,7 +10,11 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクを新規作成した場合' do
       it '作成したタスクが表示される' do
         visit @task
+        expect(page).to have_content 'タスク'
         expect(page).to have_content 'テスト'
+        expect(page).to have_content '2021'
+        expect(page).to have_content '未着手'
+        expect(page).to have_content '高'
       end
     end
   end
@@ -45,8 +49,8 @@ RSpec.describe 'タスク管理機能', type: :system do
       it '優先順位が中タスク(2個目)が一番上に表示される' do
         visit tasks_path(sort: "priority")
         task_list = all('.task_row')
-        expect(task_list[0]).to have_content '2個目のタスク'
-        expect(task_list[1]).to have_content '1個目のタスク'
+        expect(task_list[0]).to have_content '1個目のタスク'
+        expect(task_list[1]).to have_content '2個目のタスク'
       end
     end
     context 'タイトルであいまい検索をした場合' do
