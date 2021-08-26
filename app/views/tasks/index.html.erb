@@ -35,7 +35,7 @@
 <%= link_to t('action.new'), new_task_path %> |
 <%= link_to "終了期限で並び替え", tasks_path(sort: "deadline") %> |
 <%= link_to "優先順位で並び替え", tasks_path(sort: "priority") %> |
-<%= link_to "全件表示", tasks_path %>
+<%= link_to "並び替えリセット", tasks_path %>
 
 <div class="search-form">
   <%= form_with( url: tasks_path, method: :get, local: true) do |f| %>
