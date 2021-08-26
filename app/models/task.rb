@@ -1,4 +1,6 @@
 class Task < ApplicationRecord
+  belongs_to :user
+  
   validates :task_name, presence: true
   validates :to_do, presence: true
   # validate :not_before_today
