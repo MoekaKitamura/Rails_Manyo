@@ -1,10 +1,11 @@
-<h1>ユーザー一覧</h1>
+<h1>ユーザー管理</h1>
 
 <p id="notice"><%= notice %></p>
 
 <table>
   <thead>
     <tr>
+      <th>ユーザーID</th>
       <th>ユーザー名</th>
       <th>メールアドレス</th>
       <th>管理者</th>
@@ -15,6 +16,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.id %></td>
         <td><%= user.user_name %></td>
         <td><%= user.email %></td>
         <td><%= "⭕️" if user.admin == true %></td>
