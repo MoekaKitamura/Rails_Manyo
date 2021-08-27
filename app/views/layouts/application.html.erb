@@ -15,12 +15,13 @@
       <li class="nav-item">
         <%= link_to "タスク管理アプリ", tasks_path %>
       </li>
-    <% if current_user.admin == true %>
-      <li class="nav-item">
-        <%= link_to "ユーザー管理", admin_users_path, class: "nav-link active"%>
-      </li>
-    <% end %>
+    
     <% if logged_in? %>
+      <% if current_user.admin == true %>
+        <li class="nav-item">
+          <%= link_to "ユーザー管理", admin_users_path, class: "nav-link active"%>
+        </li>
+      <% end %>
       <li class="nav-item">
         <%= link_to "タスク一覧", tasks_path, class: "nav-link active"%>
       </li>

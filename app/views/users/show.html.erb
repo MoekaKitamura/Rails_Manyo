@@ -14,8 +14,12 @@
   </p>
 
   <p>
-    <strong>管理者:</strong>
-    <%= @user.admin %>
+    <strong>管理者権限:</strong>
+    <% if @user.admin == true %>
+      ⭕️
+    <% else %>
+      なし
+    <% end %>
   </p>
 </div>
 

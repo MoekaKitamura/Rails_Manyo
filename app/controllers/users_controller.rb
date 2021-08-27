@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @tasks = current_user.tasks.order(created_at: :desc)
+    @tasks = @user.tasks.order(created_at: :desc)
   end
 
   def new

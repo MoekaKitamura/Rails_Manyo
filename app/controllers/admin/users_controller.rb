@@ -2,7 +2,7 @@ class Admin::UsersController < ApplicationController
   before_action :admin_required
   
   def index
-    @users = User.all
+    @users = User.order(created_at: :desc)
   end
 
   def show
@@ -19,25 +19,24 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to @user, notice: "ユーザーを登録しました。"
+      redirect_to admin_users_path, notice: "ユーザーを登録しました。"
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def update
-    if @user.update(user_params)
-      redirect_to @user, notice: "ユーザーを変更しました。"
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
+  # def update
+  #   if @user.update(user_params)
+  #     redirect_to admin_users_path, notice: "ユーザーを変更しました。"
+  #   else
+  #     render :edit, status: :unprocessable_entity
+  #   end
+  # end
 
-  def destroy
-    @user.destroy
-    redirect_to users_url, notice: "ユーザーを削除しました。"
-  end
+  # def destroy
+  #   @user.destroy
+  #   redirect_to users_url, notice: "ユーザーを削除しました。"
+  # end
 
   private
   def set_user
