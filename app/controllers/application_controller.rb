@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     def already_logged_in
         redirect_to tasks_path, notice: "ログインしています。" if current_user
     end
-    def  same_user?
-        @picture.user_id == current_user.id
+    def same_user_required
+        redirect_to user_path(current_user.id), notice: "違うユーザー情報は見れません！これがあなたです。" unless @user.id == current_user.id
     end
 end
