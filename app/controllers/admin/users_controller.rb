@@ -1,12 +1,9 @@
 class Admin::UsersController < ApplicationController
+  before_action :set_user, only: %i[ show edit update destroy ]
   before_action :admin_required
   
   def index
-    @users = User.order(created_at: :desc)
-  end
-
-  def show
-    @tasks = Task.find_by(user_id: params[:id]).order(created_at: :desc)
+    @users = User.order(created_at: :asc)#.includes(:user) #N+1,viewでcountでtaskテーブルを読んでる
   end
 
   def new
@@ -25,18 +22,21 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # def update
-  #   if @user.update(user_params)
-  #     redirect_to admin_users_path, notice: "ユーザーを変更しました。"
-  #   else
-  #     render :edit, status: :unprocessable_entity
-  #   end
-  # end
+  def update
+    if @user.update(user_params)
+      redirect_to admin_users_path, notice: "ユーザーを変更しました。"
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
 
-  # def destroy
-  #   @user.destroy
-  #   redirect_to users_url, notice: "ユーザーを削除しました。"
-  # end
+  def destroy
+    if @user.destroy
+      redirect_to users_url, notice: "ユーザーを削除しました。"
+    else
+      redirect_to users_url, notice: "このユーザーは削除できません。"
+    end
+  end
 
   private
   def set_user
