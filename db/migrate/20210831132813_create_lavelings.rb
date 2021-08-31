@@ -1,8 +1,8 @@
-class CreateLavelings < ActiveRecord::Migration[5.2]
+class Createlabelings < ActiveRecord::Migration[5.2]
   def change
-    create_table :lavelings do |t|
+    create_table :labelings do |t|
       t.references :task, foreign_key: true
-      t.references :lavel, foreign_key: true
+      t.references :label, foreign_key: true
 
       t.timestamps
     end

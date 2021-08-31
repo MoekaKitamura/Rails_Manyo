@@ -17,9 +17,9 @@ Ruby on Rails 5.2.5
 users i(admin) n c s e u d 
 - Task task_name:string to_do:string deadline:date status:string priority:string user:references
 tasks i n c s e u d
-- Lavel label_name:string
-lavels n c e u d
-- Laveling task:references lavel:references
+- label label_name:string
+labels n c e u d
+- labeling task:references label:references
 コントローラーなし
 - モデルなし
 sessions n c d
@@ -41,8 +41,8 @@ psql --version
   ステータスコードの404ページと500ページの2種類の設定は必須とする
   それ以外は+α要件として、つけてみたい方は実装してみること
 タスクに複数のラベルをつけられる（ラベルはseedなどのマスタデータで作成する・管理する形でも構いませんし、管理画面などから作成できる形でも構わない）
-ラベルは、タスクを新規登録するときに（またはタスクの編集をするときに）タスクと一緒に登録（または編集）できる
-タスクの詳細画面で、そのタスクに紐づいているラベル一覧を出力する
+✅ラベルは、タスクを新規登録するときに（またはタスクの編集をするときに）タスクと一緒に登録（または編集）できる
+✅タスクの詳細画面で、そのタスクに紐づいているラベル一覧を出力する
   【+α要件】ユーザが自分でラベルを作成ができる（その場合、ユーザが作成したラベルはそのユーザしか使えないように実装すること）
   【+α要件】タスクを編集するとき、タスクに紐づいているラベルも一緒に編集（ラベルの付け外し）ができる
 つけたラベルで検索ができる（ラベルは一つだけを選択して、そのラベルがついているタスクを検索するという形で構いません）
@@ -54,24 +54,23 @@ step5のブランチからHerokuのmasterにpushする
 HerokuのURLを提出する
 
 
-rails g scaffold Lavel lavel_name:string
+rails g scaffold label label_name:string
 routing : n c e u d
-has_many: laveling 
-has_many: laveling through...
+has_many: labeling 
+has_many: labeling through...
 viewいらない
 tasks/new に accept_nested...
-複数ラベル lavel.ids seed Faker::Hobby.activity
-@lavel = @task.lavel_ids.lavel_name 
+複数ラベル label.ids seed Faker::Hobby.activity
+@label = @task.label_ids.label_name 
 
-rails g model task:references lavel:references
+rails g model labeling task:references label:references
 migration
 belongs_to
 
-<% Lavel.all.each do |lavel| %>
-  <%= f.checkbox :lavel.ids, {multiple: true, checked: lavel[:checked],disabled: lavel[:disabled],
-  include_hidden: false}, lavel[:id] %>
-  <% lavel.name %>
-  <%end%>
+
+
+label名表示
+コンソールでtask.labelsとtask.label_idsが反応しない
 
   Faker::Verb.base
 
@@ -101,15 +100,15 @@ belongs_to
                )
   end
   10.times do |n|
-  lavel_name = Faker::Food.ethnic_category
-  Lavel.create!(lavel_name: lavel_name
+  label_name = Faker::Food.ethnic_category
+  Label.create!(label_name: label_name
                )
   end
   10.times do |n|
   task_id = Faker::Number.between(from: 0, to: 9)
-  lavel_ids = Faker::Number.between(from: 0, to: 9)
-  Lavel.create!(task_id: task_id,
-                lavel_ids: lavel_ids
+  label_ids = Faker::Number.between(from: 0, to: 9)
+  Label.create!(task_id: task_id,
+                label_ids: label_ids
                )
   end
 

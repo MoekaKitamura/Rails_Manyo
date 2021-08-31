@@ -101,6 +101,11 @@ form{
   padding: 0 50px;
 }
 
+.label-default{
+  font-size: 1.2rem;
+  background: #FFA45B;
+  color: rgb(80, 80, 80);
+}
 /*---------------------ページネーション自体のデザイン*/
 
 .pagination>li>a {          

@@ -10,22 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_31_132813) do
+ActiveRecord::Schema.define(version: 2021_08_31_140039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "lavelings", force: :cascade do |t|
+  create_table "labelings", force: :cascade do |t|
     t.bigint "task_id"
-    t.bigint "lavel_id"
+    t.bigint "label_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["lavel_id"], name: "index_lavelings_on_lavel_id"
-    t.index ["task_id"], name: "index_lavelings_on_task_id"
+    t.index ["label_id"], name: "index_labelings_on_label_id"
+    t.index ["task_id"], name: "index_labelings_on_task_id"
   end
 
-  create_table "lavels", force: :cascade do |t|
-    t.string "lavel_name"
+  create_table "labels", force: :cascade do |t|
+    t.string "label_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_08_31_132813) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "lavelings", "lavels"
-  add_foreign_key "lavelings", "tasks"
+  add_foreign_key "labelings", "labels"
+  add_foreign_key "labelings", "tasks"
   add_foreign_key "tasks", "users"
 end
