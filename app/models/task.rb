@@ -1,5 +1,7 @@
 class Task < ApplicationRecord
   belongs_to :user
+  has_many :lavelings, dependent: :destroy
+  has_many :laveling_lavels, throuth: :laveling, source: :lavel
   
   validates :task_name, presence: true
   validates :to_do, presence: true

@@ -19,7 +19,7 @@ users i(admin) n c s e u d
 tasks i n c s e u d
 - Lavel label_name:string
 lavels n c e u d
-- Set_lavel task:references lavel:references
+- Laveling task:references lavel:references
 コントローラーなし
 - モデルなし
 sessions n c d
@@ -36,54 +36,80 @@ ruby -v
 rails -v
 psql --version
 
-step4
-✅ユーザモデルを作成する
-✅最初のユーザをseedで作成する
-✅ユーザとタスクを紐づける
-✅タスク一覧画面とマイページに表示されているすべてのタスクに、作成したユーザ名を表示させること
-✅ユーザのemailにユニーク制約をつける
-✅関連（アソシエーションで使用するid）に対してインデックスをつける
-✅bcrypt-ruby以外は、Gemを使わずに実装する
-✅ログイン機能を実装する
-✅ログインをせずにタスク一覧のページに飛ぼうとしたときは、ログインページに遷移させる
-✅自分が作成したタスクだけを表示させる
-✅ログアウト機能を実装する
-✅ユーザの新規登録画面、ログイン画面、詳細・マイページ（show）画面を作成する
-✅ユーザを新規登録（create）をしたとき、同時にログインもさせる
-✅ログインしているときは、ユーザの新規登録画面（new画面）に行かせないようにコントローラで制御する
-✅自分（current_user）以外のユーザのマイページ（userのshow画面）にアクセスしたらタスク一覧に遷移させる
-✅管理画面を追加する
-✅管理画面にはかならず /admin というURLを先頭につける
-✅管理画面でユーザ一覧表示・作成・更新・削除ができる（管理画面のビューは、パーシャル化しなくても構わない）
-✅ユーザを削除したら、そのユーザに紐づいているタスクを全て削除する
-✅ユーザの一覧画面で、そのユーザに紐づいているタスクの数を表示する
-✅N+1問題を回避するための仕組みを取り入れること
-✅ユーザが作成したタスクの一覧を、そのユーザのマイページ（userのshow画面）で見られる
-✅ユーザを管理ユーザと一般ユーザを区別する
-✅管理ユーザだけがユーザ管理画面にアクセスできる
-✅一般ユーザが管理画面にアクセスしたとき、tasks/indexに飛ばして「管理者以外はアクセスできない」旨のflashメッセージを出力する
-✅ユーザ管理画面でロールの付与と削除ができる
-✅管理ユーザが一人もいなくなってしまわないように、モデルのコールバックを利用して更新・削除の制御をする
-✅テスト項目を満たすようSystem Specを書く
-  ユーザ登録のテスト
-    ユーザの新規登録ができること
-    ユーザがログインせずタスク一覧画面に飛ぼうとしたとき、ログイン画面に遷移すること
-  セッション機能のテスト
-    ログインができること
-    自分の詳細画面(マイページ)に飛べること
-    一般ユーザが他人の詳細画面に飛ぶとタスク一覧画面に遷移すること
-    ログアウトができること
-  管理画面のテスト
-    管理ユーザは管理画面にアクセスできること
-    一般ユーザは管理画面にアクセスできないこと
-    管理ユーザはユーザの新規登録ができること
-    管理ユーザはユーザの詳細画面にアクセスできること
-    管理ユーザはユーザの編集画面からユーザを編集できること
-    管理ユーザはユーザの削除をできること
-ブランチのstep4をherokuにデプロイすること
-Herokuにデプロイした際に、すでに登録されているタスクとユーザが紐づいているようにすること
+✅Railsが用意しているデフォルトのエラーページを、自分が作った画面にする
+✅状況に応じて、適切にエラーページを設定する
+  ステータスコードの404ページと500ページの2種類の設定は必須とする
+  それ以外は+α要件として、つけてみたい方は実装してみること
+タスクに複数のラベルをつけられる（ラベルはseedなどのマスタデータで作成する・管理する形でも構いませんし、管理画面などから作成できる形でも構わない）
+ラベルは、タスクを新規登録するときに（またはタスクの編集をするときに）タスクと一緒に登録（または編集）できる
+タスクの詳細画面で、そのタスクに紐づいているラベル一覧を出力する
+  【+α要件】ユーザが自分でラベルを作成ができる（その場合、ユーザが作成したラベルはそのユーザしか使えないように実装すること）
+  【+α要件】タスクを編集するとき、タスクに紐づいているラベルも一緒に編集（ラベルの付け外し）ができる
+つけたラベルで検索ができる（ラベルは一つだけを選択して、そのラベルがついているタスクを検索するという形で構いません）
+今回は、実装した内容を参考に必要なテスト項目を自分で考えSystem Specを書く
+テストが通ったときのスクショをコメントと一緒に貼り付ける
+ラベルはGemを使わず実装する
+step5のブランチからHerokuのmasterにpushする
+それぞれ10件以上のタスク、ユーザ、ラベルのシードデータをHerokuに反映させる
+HerokuのURLを提出する
 
-N+1問題の変化がわからない
-管理者権限与えるためにそのユーザーのパスワードが必要なのは変？
 
-marcia@example.io
+rails g scaffold Lavel lavel_name:string
+routing : n c e u d
+has_many: laveling 
+has_many: laveling through...
+viewいらない
+tasks/new に accept_nested...
+複数ラベル lavel.ids seed Faker::Hobby.activity
+@lavel = @task.lavel_ids.lavel_name 
+
+rails g model task:references lavel:references
+migration
+belongs_to
+
+<% Lavel.all.each do |lavel| %>
+  <%= f.checkbox :lavel.ids, {multiple: true, checked: lavel[:checked],disabled: lavel[:disabled],
+  include_hidden: false}, lavel[:id] %>
+  <% lavel.name %>
+  <%end%>
+
+  Faker::Verb.base
+
+  10.times do |n|
+  user_name = Faker::Games::Pokemon.name
+  email = "ex#{n+1}@ex.com"
+  password = "111111"
+  admin = false
+  User.create!(user_name: user_name,
+               email: email,
+               password: password,
+               )
+  end
+  10.times do |n|
+  task_name = Faker::Food.dish
+  to_do = Faker::Food.description
+  date = Faker::Date.between(from: Date.today, to: 1.year.from_now)
+  status = Faker::Number.between(from: 1, to: 2)
+  priority = Faker::Number.between(from: 1, to: 2)
+  user_id = Faker::Number.between(from: 0, to: 9)
+  Task.create!(task_name: task_name,
+               to_do: to_do,
+               date: date,
+               status: status,
+               priority: priority,
+               user_id: user_id
+               )
+  end
+  10.times do |n|
+  lavel_name = Faker::Food.ethnic_category
+  Lavel.create!(lavel_name: lavel_name
+               )
+  end
+  10.times do |n|
+  task_id = Faker::Number.between(from: 0, to: 9)
+  lavel_ids = Faker::Number.between(from: 0, to: 9)
+  Lavel.create!(task_id: task_id,
+                lavel_ids: lavel_ids
+               )
+  end
+

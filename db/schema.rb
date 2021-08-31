@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_122555) do
+ActiveRecord::Schema.define(version: 2021_08_31_132813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lavelings", force: :cascade do |t|
+    t.bigint "task_id"
+    t.bigint "lavel_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lavel_id"], name: "index_lavelings_on_lavel_id"
+    t.index ["task_id"], name: "index_lavelings_on_task_id"
+  end
+
+  create_table "lavels", force: :cascade do |t|
+    t.string "lavel_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string "task_name", null: false
@@ -37,5 +52,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_122555) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "lavelings", "lavels"
+  add_foreign_key "lavelings", "tasks"
   add_foreign_key "tasks", "users"
 end

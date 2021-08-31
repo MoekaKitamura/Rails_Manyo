@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lavels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lavel name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lavels.each do |lavel| %>
+      <tr>
+        <td><%= lavel.lavel_name %></td>
+        <td><%= link_to 'Show', lavel %></td>
+        <td><%= link_to 'Edit', edit_lavel_path(lavel) %></td>
+        <td><%= link_to 'Destroy', lavel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lavel', new_lavel_path %>
