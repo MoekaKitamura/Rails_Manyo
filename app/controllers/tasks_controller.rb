@@ -1,20 +1,21 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
-
+  
   def index
-    @tasks = Task.order(created_at: :desc)
-    @tasks = Task.order(params[:sort])
+    @tasks = current_user.tasks.order(created_at: :desc).includes(:user)
+    @tasks = current_user.tasks.order(params[:sort])
     if params[:search_task_name].present? && params[:search_status].present?
-      @tasks = Task.task_name(params[:search_task_name]).status(params[:search_status])
+      @tasks = current_user.tasks.task_name(params[:search_task_name]).status(params[:search_status])
     elsif params[:search_task_name].present?
-      @tasks = Task.task_name(params[:search_task_name])
+      @tasks = current_user.tasks.task_name(params[:search_task_name])
     elsif params[:search_status].present?
-      @tasks = Task.status(params[:search_status])
+      @tasks = current_user.tasks.status(params[:search_status])
     end
     @tasks = @tasks.page(params[:page]).per(5)
   end
 
   def show
+    
   end
 
   def new
@@ -22,10 +23,12 @@ class TasksController < ApplicationController
   end
 
   def edit
+    
   end
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       redirect_to @task, notice: "タスクを登録しました。"
     else
@@ -51,6 +54,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
   def task_params
-    params.require(:task).permit(:task_name, :to_do, :deadline, :status, :priority, :sort, :search_name, :search_status)
+    params.require(:task).permit(:task_name, :to_do, :deadline, :status, :priority, :sort, :search_name, :search_status, :user_id)
   end
 end

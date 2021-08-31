@@ -1,22 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Task, type: :model do
+  before do
+    @user = User.create(
+      user_name: "user", 
+      email: "user@a.com", 
+      password:"password", 
+      password_confirmation: "password"
+    )
+  end
   describe 'バリデーションのテスト' do
     context 'タスクのタイトルが空の場合' do
       it 'バリデーションにひっかる' do
-        task = Task.new(task_name: '', to_do: '失敗テスト')
+        task = Task.new(task_name: '', to_do: '失敗テスト', user_id: @user.id)
         expect(task).not_to be_valid
       end
     end
     context 'タスクの詳細が空の場合' do
       it 'バリデーションにひっかかる' do
-        task = Task.new(task_name: 'test', to_do: '')
+        task = Task.new(task_name: 'test', to_do: '', user_id: @user.id)
         expect(task).not_to be_valid
       end  
     end
     context 'タスクのタイトルと詳細に内容が記載されている場合' do
       it 'バリデーションが通る' do
-        task = Task.new(task_name: 'test', to_do: '成功テスト')
+        task = Task.new(task_name: 'test', to_do: '成功テスト', user_id: @user.id)
         expect(task).to be_valid
       end
     end
@@ -24,8 +32,8 @@ RSpec.describe Task, type: :model do
 
   describe '検索機能' do
     # 必要に応じて、テストデータの内容を変更して構わない
-    let!(:task) { FactoryBot.create(:task, task_name: 'task') }
-    let!(:second_task) { FactoryBot.create(:second_task, task_name: "sample") }
+    let!(:task) { FactoryBot.create(:task, task_name: 'task', user_id: @user.id) }
+    let!(:second_task) { FactoryBot.create(:second_task, task_name: "sample", user_id: @user.id) }
     context 'scopeメソッドでタイトルのあいまい検索をした場合' do
       it "検索キーワードを含むタスクが絞り込まれる" do
         # title_seachはscopeで提示したタイトル検索用メソッドである。メソッド名は任意で構わない。

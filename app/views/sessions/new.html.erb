@@ -1,0 +1,28 @@
+<h1>ログイン</h1>
+
+<p id="notice"><%= notice %></p>
+<p id="alert"><%= alert %></p>
+
+<%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+  <div class="form">
+    <div class="field">
+      <%= f.label t :email %>
+      <%= f.email_field :email %>
+    </div>
+
+    <div class="field">
+      <%= f.label t :password %>
+      <%= f.password_field :password %>
+      <p>６文字以上必要です。</p>
+    </div>
+
+    <div class="field">
+        <%= f.submit "ログイン" %>
+    </div>
+    <br>
+    <div>
+      <%= link_to "はじめての方はこちら", new_user_path %>
+    </div>
+
+  </div>
+<% end %>
