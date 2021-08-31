@@ -17,17 +17,14 @@ class User < ApplicationRecord
   def check_admin_exist_for_update
     admins = User.all.where(admin: true)
     #入力されたadminがfalse(adimin権限をなくそうとしている) , 変更されようとしてるuserが今のadminの場合(つまり最後の1人)
-    if admins.count == 1 && self.admin == false && self.admin == User.find_by(admin: true)
+    if admins.count == 1 && self.admin == false && self == User.find_by(admin: true)
       errors.add(:base, "管理者がいなくなってしまいます！！")
       throw(:abort)
     end 
   end
   def check_admin_exist_for_destroy
     admins = User.all.where(admin: true)
-    throw(:abort) if admins.count == 1 && self.admin == User.find_by(admin: true)
-    # if admins.count == 1
-    #   errors.add(:base, "管理者がいなくなってしまいます！！")
-    #   throw(:abort)
-    # end 
+    throw(:abort) if admins.count == 1 && self == User.find_by(admin: true)
+    
   end
 end

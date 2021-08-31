@@ -87,5 +87,3 @@ N+1問題の変化がわからない
 管理者権限与えるためにそのユーザーのパスワードが必要なのは変？
 
 marcia@example.io
-
-User.create(user_name: "モエカータ", email: "moeka@example.io", password:"password", password_confirmation:"password",admin: true)
