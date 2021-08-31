@@ -17,13 +17,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-     redirect_to edit_admin_user_path(@user) if current_user.admin == true
+    redirect_to edit_admin_user_path(@user) if current_user.admin == true
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
-      raise
       session[:user_id] = @user.id
       redirect_to @user, notice: "ユーザーを登録しました。"
     else

@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :set_task, only: %i[ show edit update destroy ]
   
   def index
-    @tasks = current_user.tasks.order(created_at: :desc)
+    @tasks = current_user.tasks.order(created_at: :desc).includes(:user)
     @tasks = current_user.tasks.order(params[:sort])
     if params[:search_task_name].present? && params[:search_status].present?
       @tasks = current_user.tasks.task_name(params[:search_task_name]).status(params[:search_status])

@@ -2,8 +2,10 @@ class Admin::UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :admin_required
   
+  
   def index
-    @users = User.order(created_at: :asc)#.includes(:user) #N+1,viewでcountでtaskテーブルを読んでる
+    @users = User.order(created_at: :asc)
+    @users = @users.page(params[:page]).per(10)
   end
 
   def new

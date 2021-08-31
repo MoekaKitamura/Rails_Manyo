@@ -25,6 +25,7 @@
 
 <div class="bottom_link">
   <%= link_to t('action.edit'), edit_user_path(@user) %> |
+  <%= link_to t('action.destroy'), @user, method: :delete, data: { confirm: '本当に削除しますか？' } %> |
   <%= link_to t('action.back'), users_path %>
 </div>
 
@@ -54,7 +55,7 @@
         <td><%= task.priority %></td>
         <td><%= link_to t('action.show'), task %></td>
         <td><%= link_to t('action.edit'), edit_task_path(task) %></td>
-        <td><%= link_to t('action.destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('action.destroy'), task, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
       </tr>
     <% end %>
   </tbody>

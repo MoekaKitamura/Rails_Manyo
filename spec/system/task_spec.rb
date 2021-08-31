@@ -3,8 +3,13 @@ require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
   before do
     # テストで使用するためのタスクを作成
-    FactoryBot.create(:task)
-    FactoryBot.create(:second_task)
+    user = FactoryBot.create(:user)
+    visit new_session_path
+    fill_in :session_email, with: 'general@ex.com'
+    fill_in :session_password, with: 'password'
+    click_button "ログイン"
+    FactoryBot.create(:task, user: user)
+    FactoryBot.create(:second_task, user: user)
   end
   describe '新規作成機能' do
     context 'タスクを新規作成した場合' do

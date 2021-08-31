@@ -7,6 +7,7 @@ FactoryBot.define do
     deadline { "2021-10-25" }
     status { "未着手" }
     priority { "高" }
+    # association :user
   end
 
   # 作成するテストデータの名前を「second_task」とします
@@ -17,6 +18,7 @@ FactoryBot.define do
     deadline { "2021-10-10" }
     status { "完了" }
     priority { "中" }
+    # association :user #タスクを作るたびにuserを生成してしまうので、uniqueでこける
   end
 
   # factory :thierd_task, class: Task do

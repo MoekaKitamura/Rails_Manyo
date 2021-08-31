@@ -16,7 +16,7 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.user_name %></td>
-        <td><%= user.email %></td>
+        <td><%= user.email.truncate(20) %></td>
         <td><%= "⭕️" if user.admin == true %></td>
         <td><%= link_to t('action.show'), user %></td>
         <td><%= link_to t('action.edit'), edit_user_path(user) %></td>
