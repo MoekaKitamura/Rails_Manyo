@@ -27,24 +27,24 @@
 #                )
 #   end
 
-10.times do |n|
-  user_name = Faker::Games::Pokemon.name
-  email = "ex#{n+1}@ex.com"
-  password = "111111"
-  admin = false
-  User.create!(user_name: user_name,
-               email: email,
-               password: password,
-               )
-  end
+# 10.times do |n|
+#   user_name = Faker::Games::Pokemon.name
+#   email = "ex#{n+1}@ex.com"
+#   password = "111111"
+#   admin = false
+#   User.create!(user_name: user_name,
+#                email: email,
+#                password: password,
+#                )
+#   end
 
   10.times do |n|
   task_name = Faker::Food.dish
   to_do = Faker::Food.description
-  date = Faker::Date.between(from: Date.today, to: 1.year.from_now)
+  date = "2022-07-11"
   status = Faker::Number.between(from: 1, to: 2)
   priority = Faker::Number.between(from: 1, to: 2)
-  user_id = Faker::Number.between(from: 0, to: 9)
+  user_id = Faker::Number.between(from: 0, to: User.count)
   Task.create!(task_name: task_name,
                to_do: to_do,
                date: date,
