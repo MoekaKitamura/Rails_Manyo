@@ -49,7 +49,7 @@ psql --version
 ✅今回は、実装した内容を参考に必要なテスト項目を自分で考えSystem Specを書く
 ✅テストが通ったときのスクショをコメントと一緒に貼り付ける
 ✅ラベルはGemを使わず実装する
-step5のブランチからHerokuのmasterにpushする
+✅step5のブランチからHerokuのmasterにpushする
 それぞれ10件以上のタスク、ユーザ、ラベルのシードデータをHerokuに反映させる
 HerokuのURLを提出する
 
@@ -66,52 +66,3 @@ tasks/new に accept_nested...
 rails g model labeling task:references label:references
 migration
 belongs_to
-
-current_user.tasks.find(14).labels.pluck(:id)
-=> [3, 5]
->> current_user.tasks.all.collect { |task| task.labels.pluck(:label_name)}
-=> [[], [], [], ["mix", "cure"]]
-
-label名表示
-コンソールでtask.labelsとtask.label_idsが反応しない
-
-  Faker::Verb.base
-
-  10.times do |n|
-  user_name = Faker::Games::Pokemon.name
-  email = "ex#{n+1}@ex.com"
-  password = "111111"
-  admin = false
-  User.create!(user_name: user_name,
-               email: email,
-               password: password,
-               )
-  end
-  10.times do |n|
-  task_name = Faker::Food.dish
-  to_do = Faker::Food.description
-  date = Faker::Date.between(from: Date.today, to: 1.year.from_now)
-  status = Faker::Number.between(from: 1, to: 2)
-  priority = Faker::Number.between(from: 1, to: 2)
-  user_id = Faker::Number.between(from: 0, to: 9)
-  Task.create!(task_name: task_name,
-               to_do: to_do,
-               date: date,
-               status: status,
-               priority: priority,
-               user_id: user_id
-               )
-  end
-  10.times do |n|
-  label_name = Faker::Food.ethnic_category
-  Label.create!(label_name: label_name
-               )
-  end
-  10.times do |n|
-  task_id = Faker::Number.between(from: 0, to: 9)
-  label_ids = Faker::Number.between(from: 0, to: 9)
-  Label.create!(task_id: task_id,
-                label_ids: label_ids
-               )
-  end
-
