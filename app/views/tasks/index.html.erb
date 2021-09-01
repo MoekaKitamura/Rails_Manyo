@@ -48,7 +48,7 @@
     <br>
     <p>ラベルで検索する</p>
     <%= f.select :search_label, Label.all.collect { |label| [ label.label_name, label.id ] }, {include_blank: '選択してください'} %>
-    <%= f.submit "検索" %>
+    <%= f.submit "ラベルで検索" %>
   <% end %>
 </div>
 
