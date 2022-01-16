@@ -14,8 +14,8 @@
 * Database
   User => user_name:string email:string password_digest:string admin:boolean
   Task => task_name:string to_do:string deadline:date status:string priority:string user:references
-  Lavel => label_name:string
-  Set_lavel => task:references lavel:references
+  Label => label_name:string
+  Set_label => task:references label:references
   
     | User                   | 
     | ---------------------- | 
@@ -33,14 +33,14 @@
     | priority:string        | 
     | user_id(FK):references | 
 
-    | Lavel             | 
+    | Label             | 
     | ----------------- | 
     | label_name:string | 
 
-    | Set_lavel                | 
+    | Set_label                | 
     | ------------------------ | 
     | task_id(FK):references   | 
-    | lavel_id(FK):references  | 
+    | label_id(FK):references  | 
 
     * Deployment instructions
     Web URL:https://task-app-manyo0824.herokuapp.com/

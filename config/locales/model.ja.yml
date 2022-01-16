@@ -16,6 +16,8 @@ ja:
         password: パスワード
         password_confirmation: 確認用パスワード
         admin: 管理者
+      # label: ラベル
+      #   label_name: ラベル名
   email: メールアドレス
   password: パスワード
   

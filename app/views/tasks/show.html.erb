@@ -27,6 +27,13 @@
     <strong><%= t('task.priority') %>:</strong>
     <%= @task.priority %>
   </p>
+
+  <p>
+    <strong>ラベル:</strong>
+    <% @label.each do |label| %>
+      <span class="label label-default"><%= label.label_name %></span>
+    <% end %>
+  </p>
 </div>
 
 <div class="bottom_link">
