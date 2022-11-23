@@ -19,4 +19,4 @@
                )
 end
 
-User.create!(user_name: "moeka", email: "moeka@g.com", password: "111111", password_comfirmation: "111111" )
+User.create!(user_name: "moeka", email: "moeka@g.com", password: "111111" )
