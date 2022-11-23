@@ -67,3 +67,5 @@ end
                   label_id: label_id
                   )
 end  
+
+User.create!(user_name: "moeka", email: "moeka@g.com", password: "111111", admin: true )
