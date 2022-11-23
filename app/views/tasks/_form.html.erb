@@ -34,7 +34,13 @@
   <div class="field">
     <%= form.label :priority %>
     <%= form.select :priority, Task.priorities.keys, {include_blank: '選択してください'} %>
+  </div>
 
+  <div class="field">
+    <% Label.all.each do |label| %>
+      <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+      <%= form.label :label_ids, label.label_name, value: label[:id] %>
+    <% end %>
   </div>
 
   <div class="actions">
